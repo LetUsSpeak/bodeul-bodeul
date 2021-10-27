@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for book in book_list %}
+<div>
+    <a href="{% url 'book' book_pk=book.book_id para_pk=1 %}">
+        <img src="{{ book.image.url }}", alt="">
+    </a>
+    <span>{{ book.title }}</span>
+</div>
+</body>
+</html>
