@@ -6,11 +6,12 @@
 </head>
 <body>
 
-{% for book in target_book.paragraph.all %}
-{% if book.para_id ==
-<span>
-    {{ book.content }}
-</span>
+{% for book in book_list %}
+{% if book.para_id == para_pk %}
+<div>{{ book.content }}</div>
+<div><img src="{{ book.image.url }}", alt=""></div>
+{% endif %}
+{% endfor %}
 
 </body>
 </html>

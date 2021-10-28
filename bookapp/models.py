@@ -12,3 +12,4 @@ class Paragraph(models.Model):
     para_id = models.IntegerField()
     content = models.TextField()
     sentence = models.TextField()
+    image = models.ImageField()
