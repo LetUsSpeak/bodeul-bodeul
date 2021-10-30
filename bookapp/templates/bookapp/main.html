@@ -1,16 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% for book in book_list %}
-<div>
-    <a href="{% url 'book' book_pk=book.book_id para_pk=1 %}">
-        <img src="{{ book.image.url }}", alt="">
-    </a>
-    <span>{{ book.title }}</span>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<style>
+    .header {
+        background-color: #FDF8F2;
+        font-family: 'Jua', sans-serif;
+        font-size: 6rem;
+        text-align: center;
+    }
+    .green {
+        color: #5EBC88;
+    }
+    .brown {
+        color: #DEB98B;
+    }
+    .card {
+        display: inline-block;
+        width: 300px;
+    }
+    .card-img-top {
+        height: 300px;
+        object-fit: cover;
+    }
+    .btn {
+        background-color: #5EBC88;
+        color: white;
+    }
+    .footer {
+        background-color: #5EBC88;
+        color: white;
+        text-align: center;
+    }
+</style>
+
+<div class="header">
+    <div class="py-3">
+        <span class="green">보</span><!--
+        --><span class="brown">들</span><!--
+        --><span class="green">보</span><!--
+        --><span class="brown">들</span>
+    </div>
 </div>
-</body>
-</html>
+
+<!--<div class="container my-5">-->
+<!--    <div style="text-align: center;">-->
+<!--        {% for book in book_list %}-->
+<!--        <div class="card m-5" style="vertical-align:middle;">-->
+<!--            <img class="card-img-top" src="{{ book.image.url }}", alt="" style="width: 100%;">-->
+<!--            <div class="card-body">-->
+<!--                <h4 class="card-title">{{ book.title }}</h4>-->
+<!--                <p class="card-text" style="text-align: left;">{{ book.summary }}</p>-->
+<!--                <a class="btn" href="{% url 'book' book_pk=book.book_id para_pk=1 %}">보러 가기</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="container my-5">
+
+</div>
+
+<div class="footer mb-0">
+    <div class="py-4">
+        <span>팀 설명</span>
+        <span>팀 설명</span>
+        <span>팀 설명</span>
+        footer가 내려가질 않아요................
+    </div>
+</div>
+
+{% endblock %}

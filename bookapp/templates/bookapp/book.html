@@ -6,11 +6,29 @@
 </head>
 <body>
 
-{% for book in book_list %}
-{% if book.para_id == para_pk %}
-<div>{{ book.content }}</div>
-<div><img src="{{ book.image.url }}", alt=""></div>
-{% endif %}
+{% for paragraph in para_list %}
+    {% if paragraph.para_id == para_pk %}
+        <div>{{ paragraph.content }}</div>
+        <div>
+            <audio controls>
+                <source src='../../../static/tts_file/{{ paragraph.book_id }}_{{ paragraph.para_id }}.mp3' type="audio/mpeg">
+            </audio>
+        </div>
+        <div><img src="{{ paragraph.image.url }}", alt=""></div>
+
+        {% if prev_pk == 0 %}
+            <button disabled="disabled">이전 페이지</button>
+        {% else %}
+            <button onclick="location.href='{% url 'book' book_pk=paragraph.book_id para_pk=prev_pk %}'">이전 페이지</button>
+        {% endif %}
+
+        {% if next_pk == 0 %}
+            <button disabled="disabled">다음 페이지</button>
+        {% else %}
+            <button onclick="location.href='{% url 'book' book_pk=paragraph.book_id para_pk=next_pk %}'">다음 페이지</button>
+        {% endif %}
+    {% endif %}
+
 {% endfor %}
 
 </body>
