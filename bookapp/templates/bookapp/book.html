@@ -1,35 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/book.css' %}"/>
+
+<div class="header">
+    <a class="title my-2 mx-4" href="{% url 'main' %}">보들보들</a>
+</div>
 
 {% for paragraph in para_list %}
-    {% if paragraph.para_id == para_pk %}
-        <div>{{ paragraph.content }}</div>
-        <div>
-            <audio controls>
-                <source src='../../../static/tts_file/{{ paragraph.book_id }}_{{ paragraph.para_id }}.mp3' type="audio/mpeg">
-            </audio>
+{% if paragraph.para_id == para_pk %}
+    <div class="paragraph">
+        <div class="left">
+            <div class="content-box">
+                <div class="content my-5 p-2">
+                    {{ paragraph.content }}
+                </div>
+            </div>
         </div>
-        <div><img src="{{ paragraph.image.url }}", alt=""></div>
 
-        {% if prev_pk == 0 %}
-            <button disabled="disabled">이전 페이지</button>
-        {% else %}
-            <button onclick="location.href='{% url 'book' book_pk=paragraph.book_id para_pk=prev_pk %}'">이전 페이지</button>
-        {% endif %}
+        <div class="right">
+            <div class="audio-box mb-4">
+                <audio controls>
+                    <source src='../../../static/tts_file/{{ paragraph.book_id }}_{{ paragraph.para_id }}.mp3' type="audio/mpeg">
+                </audio>
+            </div>
+            <div class="image-box">
+                <img class="image" src="data:image/jpeg;base64,{{ paragraph.image }}">
+            </div>
+        </div>
+    </div>
 
-        {% if next_pk == 0 %}
-            <button disabled="disabled">다음 페이지</button>
-        {% else %}
-            <button onclick="location.href='{% url 'book' book_pk=paragraph.book_id para_pk=next_pk %}'">다음 페이지</button>
-        {% endif %}
+<div class="prev-button-box">
+    {% if prev_pk == 0 %}
+        <button class="btn" disabled="disabled">이전 페이지</button>
+    {% else %}
+        <button class="btn" onclick="location.href='{% url 'book' book_pk=paragraph.book_id para_pk=prev_pk %}'">이전 페이지</button>
     {% endif %}
+</div>
 
+<div class="next-button-box">
+    {% if next_pk == 0 %}
+        <button class="btn" disabled="disabled">다음 페이지</button>
+    {% else %}
+        <button class="btn" onclick="location.href='{% url 'book' book_pk=paragraph.book_id para_pk=next_pk %}'">다음 페이지</button>
+    {% endif %}
+</div>
+{% endif %}
 {% endfor %}
 
-</body>
-</html>
+{% endblock %}

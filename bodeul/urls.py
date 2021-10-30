@@ -19,12 +19,15 @@ from django.contrib import admin
 from django.urls import path
 
 from bookapp import views
-from bookapp.views import MainView, BookView
+from bookapp.views import MainView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainView.as_view(), name='main'),
-    path('book/<int:book_pk>/<int:para_pk>', views.BookView, name='book')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('create/book', views.BookCreateView, name='book_create'),
+    path('create/paragraph', views.ParagraphCreateView, name='para_create'),
+    path('book/<int:book_pk>/<int:para_pk>', views.BookView, name='book'),
+]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

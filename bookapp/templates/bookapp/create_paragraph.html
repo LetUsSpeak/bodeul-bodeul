@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    body {
+        text-align: center;
+        font-family: 'Nanum Gothic Coding', monospace;
+    }
+    .form-box {
+        display: inline-block;
+        width: 450px;
+        margin: 5rem auto;
+        border-radius: 1rem;
+        border: 2px solid #CED4DA;
+    }
+</style>
+
+<div class="form-box">
+    <form class="px-5 py-4" action="{% url 'para_create' %}" method="post" enctype="multipart/form-data">
+        {%  csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-dark rounded-pill px-5 mt-3">
+    </form>
+</div>
+
+{% endblock %}
