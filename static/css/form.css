@@ -1,0 +1,11 @@
+body {
+    text-align: center;
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+.form-box {
+    display: inline-block;
+    width: 450px;
+    margin: 5rem auto;
+    border-radius: 1rem;
+    border: 2px solid darkgray;
+}
